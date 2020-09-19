@@ -32,3 +32,10 @@ La lógica del proceso de persistencia de datos que implementa cada función est
 * __*Descripción*__: Obtiene la lista de tareas extraída de la base de datos `db/data.json` y la muestra en pantalla.
 * __*Comando*__: <br>
 `> npm index listar`
+
+## Listar
+* __*Objetivo*__: Actualiza el estado de completado de una lista
+* __*Descripción*__: Obtiene la lista de tareas extraída de la base de datos `db/data.json`, busca la tarea que contenga la misma descripción que se le pasa como parametro y actualiza el estado.
+* __*Comando*__: <br>
+`> npm index actualizar -d "[misma_descrip_del_json]" -c [true, false]`
+
