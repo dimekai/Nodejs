@@ -74,6 +74,13 @@ const getListado = () => {
     return listToDo;
 }
 
+/**
+ * 
+ * @param {string} desc 
+ * @param {boolean} completado 
+ * @returns {boolean} true: Si se ha actualizado exitosamente
+ * @description Actualiza el estado de una tarea a partir de su descripción
+ */
 const actualizar = (desc, completado) => {
     cargarDB();
 
@@ -92,7 +99,12 @@ const actualizar = (desc, completado) => {
     }
 };
 
-
+/**
+ *  
+ * @param {string} desc 
+ * @returns {boolean} true: Si se ha borrado la tarea de la base de datos
+ * @description Busca una tarea a partir de su descripción y la elimina de la base de datos
+ */
 const borrar = (desc) => {
     cargarDB();
 
