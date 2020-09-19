@@ -4,6 +4,11 @@ const colors = require('colors');
 // Vamos a guardarlo en un arreglo
 let listToDo = [];
 
+/**
+ * @param {} 
+ * @returns {}
+ * @description Guarda de forma persistente la lista de tareas dentro de un archivo JSON
+ */
 const guardarDB = () => {
 
     // Convertimos nuestra lista de tareas en un JSON 
@@ -17,6 +22,12 @@ const guardarDB = () => {
     });
 }
 
+/**
+ * @param {}
+ * @returns {}
+ * @description Obtiene la lista de tareas a partir del archivo JSON
+ * @throws Si el archivo JSON no contiene nada, inicializa vacia la lista de tareas
+ */
 const cargarDB = () => {
 
     // Manejar el error cuando el JSON no tiene nada dentro
@@ -52,5 +63,15 @@ const crear = (desc) => {
 }
 
 
+/**
+ * @param {}
+ * @returns {list} listToDo
+ * @description Devuelve la lista de tareas que se cargó de la BD
+ */
+let getListado = () => {
+    cargarDB();
 
-module.exports = { crear };
+    return listToDo;
+}
+
+module.exports = { crear, getListado };
