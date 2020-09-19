@@ -21,10 +21,10 @@ switch (comando) {
     case 'listar':
         let listaTareas = toDo.getListado();
 
+        console.log("========= ToDo ============".green);
         for (let tarea of listaTareas) {
-            console.log("========= ToDo ============".green);
-            console.log('Descrip: ', tarea.descripcion);
-            console.log('Estado:  ', tarea.completado);
+            console.log('Descripcion: '.blue, tarea.descripcion);
+            console.log('Estado:\t     '.blue, tarea.completado);
             console.log("===========================".green);
         }
         break;
