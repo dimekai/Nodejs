@@ -77,14 +77,34 @@ const getListado = () => {
 const actualizar = (desc, completado) => {
     cargarDB();
 
-    // Buscamos el inidice de la tarea que coincida con al descripcion
+    // Buscamos el inidice de la tarea que coincida con la descripción
     let index = listToDo.findIndex(tarea => {
         return tarea.descripcion === desc;
     });
 
     // Actualizamos su estado de completado
     if (index >= 0) {
-        listToDo[index].completado = completado;
+        listToDo[index].completado = (completado.toLowerCase() == 'true' ? true : false);
+        guardarDB();
+        return true;
+    } else {
+        return false;
+    }
+};
+
+
+const borrar = (desc) => {
+    cargarDB();
+
+    // Buscamos el indice de la tarea que coincida con la descripción
+    let index = listToDo.findIndex(tarea => {
+        return tarea.descripcion == desc;
+    });
+
+    // Actualizamos su estado de completado
+    if (index >= 0) {
+        // Borramos el elemento de la lista
+        listToDo.splice(index, 1);
         guardarDB();
         return true;
     } else {
@@ -95,5 +115,6 @@ const actualizar = (desc, completado) => {
 module.exports = {
     crear,
     getListado,
-    actualizar
+    actualizar,
+    borrar
 };
