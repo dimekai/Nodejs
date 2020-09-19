@@ -13,7 +13,9 @@ Los pasos para trabajar sobre el repositorio son los siguientes:
 	* __Crear__: Crea una nueva tarea por hacer. <br>
 	```> node index crear -d "[descripción]"``` <br>
 	* __Actualizar__: Actualiza una tarea y la marca como terminada o pendiente. <br>
-	```> node index actualizar -d "[descripción]" -c true``` <br>
+	```> node index actualizar -d "[misma_descrip_del_json]" -c true``` <br>
+	* __Borrar__: Borra una tarea de la base de datos usando su descripción <br>
+	```> node index borrar -d "[misma_descrip_del_json]" ``` <br>
 
 La lógica del proceso de persistencia de datos que implementa cada función está guardado en la carpeta `toDo/toDo.js`.
 
@@ -33,9 +35,15 @@ La lógica del proceso de persistencia de datos que implementa cada función est
 * __*Comando*__: <br>
 `> npm index listar`
 
-## Listar
-* __*Objetivo*__: Actualiza el estado de completado de una lista
+## Actualizar
+* __*Objetivo*__: Actualiza el estado de una tarea de la lista de tareas
 * __*Descripción*__: Obtiene la lista de tareas extraída de la base de datos `db/data.json`, busca la tarea que contenga la misma descripción que se le pasa como parametro y actualiza el estado.
 * __*Comando*__: <br>
 `> npm index actualizar -d "[misma_descrip_del_json]" -c [true, false]`
+
+## Borrar
+* __*Objetivo*__: Borrar una tarea de la lista de tareas
+* __*Descripción*__: Obtiene la lista de tareas extraída de la base de datos `db/data.json`, busca la tarea que contenga la misma descripción que se le pasa como parametro y la borra.
+* __*Comando*__: <br>
+`> npm index borrar -d "[misma_descrip_del_json]"`
 
