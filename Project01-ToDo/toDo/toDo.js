@@ -17,12 +17,24 @@ const guardarDB = () => {
     });
 }
 
+const cargarDB = () => {
+
+    // Manejar el error cuando el JSON no tiene nada dentro
+    try {
+        listToDo = require('../db/data.json');
+    } catch (error) {
+        listToDo = [];
+    }
+}
+
 /**
  * @param {string} desc 
  * @returns {string} tarea
  * @description Se crea una tarea y se almacena en la lista de tareas
  */
 const crear = (desc) => {
+
+    cargarDB();
 
     // Creamos una variable donde se guarde la tarea
     let tarea = {
