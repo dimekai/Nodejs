@@ -2,7 +2,6 @@ const argv = require('./config/yargs').argv;
 const colors = require('colors');
 const toDo = require('./toDo/toDo');
 
-
 let mostrarComandos = () => {
     console.log(colors.yellow('Comandos disponibles: '));
     console.log('\t > npm index.js', colors.yellow('crear'));
@@ -20,7 +19,14 @@ switch (comando) {
         break;
 
     case 'listar':
-        console.log('Mostrar todas las tareas por hacer');
+        let listaTareas = toDo.getListado();
+
+        for (let tarea of listaTareas) {
+            console.log("========= ToDo ============".green);
+            console.log('Descrip: ', tarea.descripcion);
+            console.log('Estado:  ', (tarea.completado ? "Completado" : "Pendiente"));
+            console.log("===========================".green);
+        }
         break;
 
     case 'actualizar':
