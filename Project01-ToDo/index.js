@@ -1,4 +1,4 @@
-const argv = require('yargs').argv;
+const argv = require('./config/yargs').argv;
 const colors = require('colors');
 
 let mostrarComandos = () => {
@@ -20,7 +20,7 @@ switch (comando) {
         break;
 
     case 'actualizar':
-        console.log('Actualiza una tardea por hacer');
+        console.log('Actualiza una tarea por hacer');
         break;
 
     default:
@@ -28,4 +28,3 @@ switch (comando) {
         mostrarComandos();
         break;
 }
-console.log(argv);
