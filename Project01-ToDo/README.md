@@ -1,8 +1,9 @@
 # Aplicación de lista de tareas por hacer - ToDo
 
+Es una aplicación de comandos para el control de tareas.<br>
 Los pasos para trabajar sobre el repositorio son los siguientes:
 
-1. Inicializar el repositorio.<br> 
+1. Inicializar el repositorio (instalar paquetes de Nodejs)<br> 
 	```
 	> npm init
 	``` 
