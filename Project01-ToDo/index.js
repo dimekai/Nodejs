@@ -34,6 +34,11 @@ switch (comando) {
         console.log((actualizado) ? "Ha sido actualizada la tarea".yellow : "Surgió un error".red);
         break;
 
+    case 'borrar':
+        let borrado = toDo.borrar(argv.descripcion);
+        console.log(borrado);
+        break;
+
     default:
         console.log('Tu comando no es reconocido'.red);
         mostrarComandos();
