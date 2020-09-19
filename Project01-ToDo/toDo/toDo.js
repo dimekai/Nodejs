@@ -68,10 +68,32 @@ const crear = (desc) => {
  * @returns {list} listToDo
  * @description Devuelve la lista de tareas que se cargó de la BD
  */
-let getListado = () => {
+const getListado = () => {
     cargarDB();
 
     return listToDo;
 }
 
-module.exports = { crear, getListado };
+const actualizar = (desc, completado) => {
+    cargarDB();
+
+    // Buscamos el inidice de la tarea que coincida con al descripcion
+    let index = listToDo.findIndex(tarea => {
+        return tarea.descripcion === desc;
+    });
+
+    // Actualizamos su estado de completado
+    if (index >= 0) {
+        listToDo[index].completado = completado;
+        guardarDB();
+        return true;
+    } else {
+        return false;
+    }
+};
+
+module.exports = {
+    crear,
+    getListado,
+    actualizar
+};
