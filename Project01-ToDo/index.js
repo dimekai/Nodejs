@@ -1,5 +1,7 @@
 const argv = require('./config/yargs').argv;
 const colors = require('colors');
+const toDo = require('./toDo/toDo');
+
 
 let mostrarComandos = () => {
     console.log(colors.yellow('Comandos disponibles: '));
@@ -12,7 +14,9 @@ let comando = argv._[0];
 
 switch (comando) {
     case 'crear':
-        console.log('Crear toDo');
+        // Vamos a crear la tarea
+        let tarea = toDo.crear(argv.descripcion);
+        console.log(tarea);
         break;
 
     case 'listar':
