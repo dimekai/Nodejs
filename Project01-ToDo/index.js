@@ -24,13 +24,14 @@ switch (comando) {
         for (let tarea of listaTareas) {
             console.log("========= ToDo ============".green);
             console.log('Descrip: ', tarea.descripcion);
-            console.log('Estado:  ', (tarea.completado ? "Completado" : "Pendiente"));
+            console.log('Estado:  ', tarea.completado);
             console.log("===========================".green);
         }
         break;
 
     case 'actualizar':
-        console.log('Actualiza una tarea por hacer');
+        let actualizado = toDo.actualizar(argv.descripcion, argv.completado);
+        console.log((actualizado) ? "Ha sido actualizada la tarea".yellow : "Surgió un error".red);
         break;
 
     default:
