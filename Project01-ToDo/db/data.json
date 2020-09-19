@@ -1,1 +1,5 @@
-[{"descripcion":"Pasear al perro","completado":false}]
+[
+    { "descripcion": "Cortarse el cabello", "completado": false },
+    { "descripcion": "Ir a comprar la despensa", "completado": false },
+    { "descripcion": "Contestar los correos", "completado": false }
+]
