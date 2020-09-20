@@ -2,16 +2,20 @@ const argv = require('./config/yargs').argv;
 const lugar = require('./lugar/lugar');
 const clima = require('./clima/clima');
 
-lugar.getLugarLatLong(argv.direccion)
-    .then(response => {
-        console.log(response);
-    }).catch(error => {
-        console.log("Hubo un error\n", error);
-    });
+const getInfo = async(direccion) => {
+    try {
+        const coords = await lugar.getLugarLatLong(direccion);
+        const temp = await clima.getClima(coords.lat, coords.lng);
+        return `El clima de ${coords.direccion} es ${temp}.`;
+    } catch (error) {
+        return `No se pudo determinar el clima de ${direccion}.`;
+    }
+};
 
-clima.getClima(19.41944, -99.14556)
+getInfo(argv.direccion)
     .then(resp => {
         console.log(resp);
-    }).catch(error => {
-        console.log('Hubo un error para el clima', error);
-    });
+    })
+    .catch(err => {
+        console.log("Hubo un error.\n", err);
+    })
