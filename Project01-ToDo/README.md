@@ -5,7 +5,7 @@ Los pasos para trabajar sobre el repositorio son los siguientes:
 
 1. Inicializar el repositorio (instalar paquetes de Nodejs)<br> 
 	```
-	> npm init
+	> npm install
 	``` 
 
 2. Seleccionar el comando a ejecutar. Hay tres comandos principales:
