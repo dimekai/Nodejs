@@ -1,7 +1,6 @@
 const axios = require('axios');
 const params = require('../config/token').getTokenLugar();
 
-
 /**
  * 
  * @param {string} direccion 
@@ -27,7 +26,7 @@ const getLugarLatLong = async(direccion) => {
         const data = resp.data.features[1];
         return {
             direccion: data.place_name,
-            long: data.geometry.coordinates[0],
+            lng: data.geometry.coordinates[0],
             lat: data.geometry.coordinates[1]
         };
     }
