@@ -6,4 +6,4 @@ Esta aplicación obtiene el clima de cualquier parte del mundo. Para poder ejecu
 `> npm init` <br>
 
 2. Ejecutar el comando:<br>
-`> node app -d ["Ciudad País]"]`
+`> node app -d "[Ciudad]"`
