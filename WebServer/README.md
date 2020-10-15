@@ -61,9 +61,9 @@ app.listen(PORT, () => {
 
 Si probamos este código en el `Postman` nos da lo siguiente.
 
-<img align="center" src="../WebServer/imgs/01_path_local.JPG" width="500"/>
+<img align="center" src="../WebServer/imgs/01_path_local.JPG" width="800"/>
 
-<img align="center" src="../WebServer/imgs/02_path_data.JPG" width="500"/>
+<img align="center" src="../WebServer/imgs/02_path_data.JPG" width="800"/>
 
 ## Servidor contenido estático
 Para poder ir explicando esta sección lo que se hará es crear una carpeta llamada `public`, dentro de la cuál haremos un archivo `HTML` para desplegar una página web.
