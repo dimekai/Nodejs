@@ -5,6 +5,10 @@ const PORT = 3000;
 // Usando el middleware
 app.use(express.static(__dirname + '/public'));
 
+// Para renderizar en nuestro hbs
+// Express HBS engine
+app.set('view engine', 'hbs');
+
 /*
 app.get('/', (req, res) => {
     //res.send('Hola Mundo');
