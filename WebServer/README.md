@@ -143,3 +143,29 @@ Sin embargo, vemos que no regresa nada __ya que lo que busca es un `servicio` no
 > Para este caso __debemos especificar el nombre del archivo al que desamos acceder. En este caso `home.html`
 
 <img align="center" src="../WebServer/imgs/06_homehtml.JPG" width="500"/>
+
+## Crear una pequeña página web
+
+Lo primero que vamos a hacer es ir a la página de [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/download/) y le daremos en `Download source`. Todo esto con el fin de meterle estilo a nuestra página.
+
+
+En este punto ya tenemos nuestra página completa.
+Sin embargo, _¿qué pasaría si queremos agregar una página más?_. Probablemente sería esto
+* Tendriamos que copiar todo el código de la página: encabezados, footers, navbars, etc.
+* Adaptar la página y más.
+
+Afortunadamente _Express_ trabaja con librerías y paquetes que permite la renderización dinámica de sitios web.
+
+Para ello trabajaremos con __handlebars__.
+
+### Handlebars (hbs)
+Este paquete (hbs) le permitirá a __Express__ renderizar las páginar con el fin de mandarle una respuesta a nuestro cliente para hacer algo como:
+
+```javascript
+<p> {{firstname}} {{lastname}} </p>
+```
+
+> _TODO ESTO CON EL FIN DE HACERLO DINÁMICO_
+En primera instancia se deberá de instalar
+
+> >npm install hbs --save
