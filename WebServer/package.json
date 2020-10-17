@@ -1,18 +1,20 @@
 {
-  "name": "webserver",
-  "version": "1.0.0",
-  "description": "Enfocado al webserver",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "webservice"
-  ],
-  "author": "Jesus Diaz",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "hbs": "^4.1.1"
-  }
+    "name": "webserver",
+    "version": "1.0.0",
+    "description": "Enfocado al webserver",
+    "main": "app.js",
+    "scripts": {
+        "start": "node server.js",
+        "nodemon": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "webservice"
+    ],
+    "author": "Jesus Diaz",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "hbs": "^4.1.1"
+    }
 }

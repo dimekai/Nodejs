@@ -341,3 +341,56 @@ Algo que hasta el momento vemos es que todos los helpers están contenidos en un
 Modulemos esto creando una nueva carpeta de nombre __hbs__ y dentro otra que se llame __helpers__.
 
 <img align="center" src="../WebServer/imgs/10_hbs.JPG" width="850"/>
+
+## Desplegando en Heroku
+1. Hacer tu cuenta en Heroku
+2. Crear una nueva app en Heroku
+3. Descargar Heroku en tu equipo en el siguiente [enlace](https://devcenter.heroku.com/articles/heroku-cli). Descarga el CLI.
+4. Configurar el puerto en `server.js`.
+
+```javascript
+// Obtener el puerto de Heroku
+const PORT = process.env.PORT || 3000;
+```
+
+5. Nosotros sabemos que para levantar el servidor localmente usando `Express` hacemos uso del siguiente comando.
+
+    > node server.js
+
+    Pero Heroku no sabrá qué comando debe ejecutar, por lo cuál debemos de especificarselo. Para eso haremos lo siguiente:
+
+    
+
+
+
+    - Vamos al `package.json`
+    - En la parte de `scripts` agregamos el siguiente:
+
+    ```javascript
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
+    ```
+
+    - Para ver si funcionó o no, podemos probarlo en nuestra consola, en el directorio donde está el proyecto, ejecutando el siguiente comando.
+
+        > npm start
+    
+    _Este es el comando que __Heroku__ va a ejecutar para montar nuestra aplicación._
+
+    - Podemos hacer lo mismo para que se dispare el `nodemon server.js`.
+
+    ```javascript
+    "scripts": {
+        "start": "node server.js",
+        "nodemon": "nodemon server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    ```
+
+    Pero no se va a ejecutar como el `start`, sino que se hara de la siguiente forma:
+
+        > npm run nodemon
+
+6. __Heroku__ trabaja en base a __Git__, por lo que debemos hacer lo mismo para subir un repositorio.

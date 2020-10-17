@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+
+// Obtener el puerto de Heroku
+const PORT = process.env.PORT || 3000;
 
 const hbs = require('hbs');
 require('./hbs/helper');
