@@ -36,7 +36,6 @@
 
 	<center>
 		<img align="center" src="img/04_crearCollection.png" width="250"/>
-		</br>
 		<img align="center" src="img/04_collectionUsuarios.JPG" width="250"/>
 	</center>
 
