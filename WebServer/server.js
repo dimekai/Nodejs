@@ -2,18 +2,25 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+const hbs = require('hbs');
+require('./hbs/helper');
+
 // Usando el middleware
 app.use(express.static(__dirname + '/public'));
 
 // Para renderizar en nuestro hbs
 // Express HBS engine
+hbs.registerPartials(__dirname + '/views/partials', function(err) {});
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
     res.render('home', {
-        nombre: "Jesus",
-        anio: new Date().getFullYear()
+        nombre: "jesus"
     });
+});
+
+app.get('/about', (req, res) => {
+    res.render('about');
 });
 
 app.listen(PORT, () => {
