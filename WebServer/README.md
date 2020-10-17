@@ -394,3 +394,9 @@ const PORT = process.env.PORT || 3000;
         > npm run nodemon
 
 6. __Heroku__ trabaja en base a __Git__, por lo que debemos hacer lo mismo para subir un repositorio.
+7. Realizamos `> heroku login`
+8. Inicializamos el proyecto: `> git init`
+9. Agregamos los archivos al stage: `> git add .`
+10. Realizamos el commit: `> git commit -m "Mi primera app"`
+11. Especificamos que lo subiremos a Heroku: `> heroku git:remote -a nombre_pagina`
+12. Lo subimos a heroku: `> git push heroku master`
