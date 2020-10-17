@@ -158,7 +158,7 @@ Afortunadamente _Express_ trabaja con librerías y paquetes que permite la rende
 
 Para ello trabajaremos con __handlebars__.
 
-### Handlebars (hbs)
+## Handlebars (hbs)
 Este paquete (hbs) le permitirá a __Express__ renderizar las páginar con el fin de mandarle una respuesta a nuestro cliente para hacer algo como:
 
 ```javascript
@@ -169,3 +169,175 @@ Este paquete (hbs) le permitirá a __Express__ renderizar las páginar con el fi
 En primera instancia se deberá de instalar
 
 > >npm install hbs --save
+
+Para poder usar de una forma correcta el handlebar debemos de agregar, lo siguiente en el `server.js`:
+
+```javascript
+// Express HBS engine
+app.set('view engine', 'hbs');
+
+app.get('/', (req, res) => {
+    res.render('home', {
+        nombre: "Jesus",
+        anio: new Date().getFullYear()
+    });
+});
+```
+
+Y en nuestro archivo `views/home.hbs` agregar:
+
+```html
+...
+<div class="jumbotron">
+        <h1 class="display-4">Hello, {{nombre}}!</h1>
+</div>        
+...
+<footer>
+    Jesús Díaz - {{anio}}
+</footer>
+```
+
+Para poder reutilizar nuestras páginas, vamos a hacer uso de __`partials`__ and __`helpers`__.
+* __`partials`__: Es un bloque de código HTML que podemos reutilizar.
+
+> Para hacer esto vamos a utilizar un folder que contenga todos los parciales.
+
+Tal y como se muestra a continuación:
+
+```javascript
+hbs.registerPartials(__dirname + '/views/partials', function (err) {});
+```
+
+> ¿Cómo creo un _`partial`_?
+
+### Partials
+Para crear un _partial_ debemos de crear una carpeta con ese nombre y dentro de él debemos de crear los archivos handlebars (`.hbs`) que queremos o que se van a reutilizar.
+
+<img align="center" src="../WebServer/imgs/07_partials.JPG" width="850"/>
+
+> Aquí podría haber un error ya que quizás sea necesario reiniciar el `nodemon` para poder ver los cambios.
+
+Para especificarle que `nodemon` esté al pendiente de esto, debemos de ejecutar el nodemon de la forma:
+
+> Linux
+>
+> nodemon server -e js,hbs,html,css
+>
+> Windows
+>
+> nodemon .\server.js -e js,hbs
+
+### Helpers
+En ocasiones hay secciones de código que se repiten bastante, lo cuál puede modularse de tal forma que solamente aparezca una sola vez. Para hacer esto hacemos uso de los __helpers__.
+
+Por ejemplo, en esta sección de código del archivo `server.js`:
+
+```javascript
+app.get('/', (req, res) => {
+    res.render('home', {
+        nombre: "Jesus",
+        anio: new Date().getFullYear()
+    });
+});
+
+app.get('/about', (req, res) => {
+    res.render('about', {
+        anio: new Date().getFullYear()
+    });
+});
+```
+Se repite el segmento de código de `anio: new Date().getFullYear()`. Quizas nos gustaría simplificar esto, ¿cómo lo haremos?
+
+Para ello hacemos uso de los __`helpers`__ del handlebar.
+
+> __Helper__: Es una función que se dispara cuándo el template lo requiere.
+
+Para realizar el helper en nuestro código del server, hacemos lo siguiente:
+
+```javascript
+...
+app.set('view engine', 'hbs');
+
+// Helpers
+hbs.registerHelper('getAnio', () => {
+    return new Date().getFullYear();
+});
+
+app.get('/', (req, res) => {
+    res.render('home', {
+        nombre: "Jesus"
+    });
+});
+
+app.get('/about', (req, res) => {
+    res.render('about');
+});
+```
+En donde:
+* `getAnio`: Es el nombre de la función
+* función de flecha: Realiza el comportamiento que necestiamos.
+
+Si nosotros dejamos como tal nuestro código, se muestra como a continuación.
+
+```html
+<footer>
+        Jesús Díaz - {{anio}}
+</footer>
+```
+<img align="center" src="../WebServer/imgs/08_Sinanio.JPG" width="850"/>
+
+Y ahora, debemos de modificar en donde utilizabamos la variable `anio`. Entonces debemos de ir al archivo `footer.hbs` y modificar lo siguiente:
+
+```html
+<footer>
+        Jesús Díaz - {{getAnio}}
+</footer>
+```
+<img align="center" src="../WebServer/imgs/08_getAnio.JPG" width="850"/>
+
+Pero, ¿porqué lo hace?
+> Si no existe una variable que estamos mandando en el archivo `server.js`, como el nombre, en alguno de los __handlebars__, inmediatamente después va a revisar en los __helpers__ a ver si existe algo.
+
+¿Puede haber más de un helper?
+Sí es posible, y veremos cómo debemos de manejarlos correctamente.
+Supongamos que ahora queremos capitalizar el nombre. Para ello debemos de crear otro helper de las siguiente forma:
+
+```javascript
+// Helpers
+...
+hbs.registerHelper('capitalizar', (text) => {
+    let words = text.split(' ');
+
+    words.forEach((word, idx) => {
+        // Actualizamos la posición de las palabras
+        words[idx] = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+
+    // Juntar todas las palabras 
+    return words.join(' ');
+});
+```
+Para poder utilizarlo vamos a modificar el archivo __home.hbs__ de la siguiente manera.
+
+```html
+...
+<h1 class="display-4">Hello, {{ capitalizar 'jeSus diAz '}}!</h1>
+...
+```
+> Esto sería de forma estática
+
+<img align="center" src="../WebServer/imgs/09_capitalizarEstatico.JPG" width="850"/>
+
+
+```html
+<h1 class="display-4">Hello, {{ capitalizar nombre }}!</h1>
+```
+> Recuerda que `nombre` fue declarado en __server.js__.
+
+<img align="center" src="../WebServer/imgs/09_capitalizarDinamico.JPG" width="850"/>
+
+#### Agrupando `helpers`
+Algo que hasta el momento vemos es que todos los helpers están contenidos en un solo archivo dentro de `server.hbs`.
+Modulemos esto creando una nueva carpeta de nombre __hbs__ y dentro otra que se llame __helpers__.
+
+<img align="center" src="../WebServer/imgs/10_hbs.JPG" width="850"/>
