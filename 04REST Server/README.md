@@ -143,3 +143,6 @@ Cuando nosotros mandamos la petición usando el Postman obtenemos la siguiente r
 <center>
 	<img align="center" src="img/06_postmanSalidaPUT.JPG" width="300"/>
 </center>
+
+## Ambientes de desarrollo y producción
+Se crea una carpeta `config` la cuál nos permite cambiar de forma más transparente el ambiente: de desarrollo y de producción, sin que modifiquemos código, directamente en nuestra aplicación.
