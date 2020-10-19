@@ -149,9 +149,21 @@ Se crea una carpeta `config` la cuál nos permite cambiar de forma más transpar
 
 ## Crear app en Heroku desde terminal
 1. Ir al directorio en donde está tu proyecto
-2. Ejecutar el siguiente comando
+2. Ejecutar los siguientes comandos:
 
-	> heroku create -h
+	- > git init
+	- > git add .
+	- > git commit -m "message"
+	- > heroku create
+	- > git push heroku master
 
-__Heroku va a poner un nombre que él crea__.
+Nota:
+> No olvides de debes de agregar comando __start__ en el `package.json` para que lo ejecute de forma exitosa.
+```javascript
+"scripts": {
+        "start": "node server/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+```
 
+__Heroku va a poner un nombre que él crea y el que esté disponible__. Para este caso el nombre de la página web valida es [este](https://stark-lowlands-63501.herokuapp.com/).
