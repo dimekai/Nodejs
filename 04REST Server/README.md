@@ -146,3 +146,12 @@ Cuando nosotros mandamos la petición usando el Postman obtenemos la siguiente r
 
 ## Ambientes de desarrollo y producción
 Se crea una carpeta `config` la cuál nos permite cambiar de forma más transparente el ambiente: de desarrollo y de producción, sin que modifiquemos código, directamente en nuestra aplicación.
+
+## Crear app en Heroku desde terminal
+1. Ir al directorio en donde está tu proyecto
+2. Ejecutar el siguiente comando
+
+	> heroku create -h
+
+__Heroku va a poner un nombre que él crea__.
+
