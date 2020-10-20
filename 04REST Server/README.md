@@ -167,3 +167,99 @@ Nota:
 ```
 
 __Heroku va a poner un nombre que él crea y el que esté disponible__. Para este caso el nombre de la página web valida es [este](https://stark-lowlands-63501.herokuapp.com/).
+
+## Pro Tip
+Si nosotros ejecutamos nuestra aplicación y mandamnos una petición GET con el Postman, podemos ver lo siguiente.
+
+IMAGEN DE WEB CON POSTMAN
+
+IMAGEN DE LOCALHOST CON POSTMAN
+
+En ambos casos, lo que se hace es bastante similar, a excepción de que en la URL es: `https://stark-lowlands-63501.herokuapp.com`/usuario y en el otro es `http://localhost:3000`/usuario.
+
+Esto puede llegar a ser un poco tedioso al especificar cuál es de desarrollo y cuál es de producción.
+
+Para poder evitar esto, __hay una forma de configurar los `enviroments` (_ambientes_) utilizando el Postman. 
+
+### Creando un `enviroment` en Postman
+1. Abrir postman y ubicar en donde dice `No Enviroment`.
+
+<center>
+	<img align="center" src="img/07_enviromentPostman.JPG" width="500"/>
+</center>
+
+2. Seleccionar la opción de configuración de `enviroments`.
+
+<center>
+	<img align="center" src="img/07_enviromentPostman2.JPG" width="500"/>
+</center>
+
+3. Agregar un nuevo `enviroment` cuyo nombre será __`Producción`__
+
+<center>
+	<img align="center" src="img/07_enviromentPostman3.JPG" width="500"/>
+</center>
+
+4. Colocamos la variable `url` y su valores será __la URL asignada por Heroku sin `/usuario`__.
+
+<center>
+	<img align="center" src="img/07_enviromentPostman4.JPG.png" width="500"/>
+</center>
+
+5. Ahora vamos a hacer lo mismo para desarrollo
+
+<center>
+	<img align="center" src="img/07_enviromentPostman5.JPG" width="500"/>
+</center>
+
+6. Vamos a cerrar todas las pestañas de las peticiones anteriores. La pantalla que deberías de ver sería algo como la siguiente.
+
+<center>
+	<img align="center" src="img/08_sinEnviroment.JPG" width="500"/>
+</center>
+
+7. Ahora seleccionamos un ambiente. Por ejemplo, si es el de desarrollo debemos hacer lo siguiente en la petición GET
+
+	> `{{url}}`/usuario
+
+Tal y como se muestra en la imagen
+
+<center>
+	<img align="center" src="img/08_conEnviromentDesarrollo.JPG" width="500"/>
+</center>
+
+Y como se puede ver, una vez que se hace la petición, funciona:
+
+<center>
+	<img align="center" src="img/08_desarrolloFunciona.JPG" width="500"/>
+</center>
+
+8. Ahora, si cambio ahora solamente el ambiente a Producción, sin alterar la URL, veamos que sigue funcionando.
+
+<center>
+	<img align="center" src="img/08_produccionFunciona.JPG" width="500"/>
+</center>
+
+> ¿Cómo podemos comprobar que realmente funciona?
+
+Bueno, lo que podríamos hacer es alterar un poco el contenido de la función para la petición GET de la siguiente forma y ver si corre.
+
+```javascript
+app.get('/usuario', (req, res) => {
+    res.json('GET Usuario LOCAL');
+});
+```
+
+Entonces en local debería aparecernos ese mensaje, pero en producción no. Veamos si es verdad.
+
+- Producción:
+
+<center>
+	<img align="center" src="img/09_produccionNo.JPG" width="500"/>
+</center>
+
+- Desarrollo
+
+<center>
+	<img align="center" src="img/09_desarrolloSi.JPG" width="500"/>
+</center>
