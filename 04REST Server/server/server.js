@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/usuario', (req, res) => {
-    res.json('GET Usuario');
+    res.json('GET Usuario LOCAL');
 });
 
 app.post('/usuario', (req, res) => {
